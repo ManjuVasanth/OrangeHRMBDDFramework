@@ -7,11 +7,13 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 import constants.Constants;
 import page_objects.DirectoryPage;
@@ -66,9 +68,27 @@ public class CommonUtils {
 		System.out.println(e.getMessage());
 	}
 }
-	public void highlightElement(WebElement element) {
+	// addedthis utility class as per customer requirement inorder to highlight each webelement we are using
+	public void highlightElement(WebElement webElement) {
 		JavascriptExecutor executor = (JavascriptExecutor) DriverManager.getDriver();
-		executor.executeScript("arguments[0].setAttribute('style','border:2px solid red');",element);
+		executor.executeScript("arguments[0].setAttribute('style','border:2px solid red');",webElement);
 		
+	}
+	
+	public void selectFromDropDown(WebElement dropDown, String howTo , String value ) {
+		Select select = new Select(dropDown);
+		switch(howTo) {
+		case"index":
+			select.selectByIndex(Integer.parseInt(value));
+			break;
+		case "value":
+			select.selectByValue(value);
+			break;
+		case "VisibleText":
+			select.selectByVisibleText(value);
+			break;
+			default:
+				break;
+		}
 	}
 } 

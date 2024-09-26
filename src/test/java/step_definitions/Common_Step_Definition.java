@@ -13,6 +13,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import constants.Constants;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
+import page_objects.LoginPage;
 import utilities.CommonUtils;
 import webdriver_manager.DriverManager;
 
@@ -42,10 +43,21 @@ public class Common_Step_Definition {
 			DriverManager.launchBrowser();
 			DriverManager.getDriver().manage().timeouts().implicitlyWait(30,TimeUnit.MILLISECONDS);
 			CommonUtils.getInstance().initWebElements();
+			login();
 		}
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void login() {
+		DriverManager.getDriver().get(Constants.APP_URL);
+		DriverManager.getDriver().manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+		
+		LoginPage.getInstance().enterUserName(Constants.Username);
+		LoginPage.getInstance().enterPassword(Constants.Password);
+		LoginPage.getInstance().clickLoginButton();
+		
 	}
 
 }

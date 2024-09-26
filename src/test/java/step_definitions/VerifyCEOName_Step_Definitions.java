@@ -25,12 +25,6 @@ public class VerifyCEOName_Step_Definitions {
 	public void the_user_is_logged_in_successfully_and_is_on_home_page() {
 	  //login
 		
-		DriverManager.getDriver().get(Constants.APP_URL);
-		DriverManager.getDriver().manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
-		
-		LoginPage.getInstance().enterUserName(Constants.Username);
-		LoginPage.getInstance().enterPassword(Constants.Password);
-		LoginPage.getInstance().clickLoginButton();
 		
 		try {
 		String url = DriverManager.getDriver().getCurrentUrl();
