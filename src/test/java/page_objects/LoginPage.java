@@ -21,6 +21,7 @@ public class LoginPage {
 		
 	}
 	
+	// Lazy Initialization Singleton Pattern
 	public static LoginPage getInstance() {
 		
 		if(loginInstance==null) {
